@@ -1,18 +1,13 @@
 <?php
-// Konfigurasi Database untuk XAMPP Lokal
-$host = "localhost";
-$user = "root";       // Default XAMPP adalah 'root'
-$pass = "";           // Default XAMPP passwordnya kosong
-$db   = "sekolah_db"; // Sesuaikan dengan nama database di phpMyAdmin lokal kamu
+$host = getenv('DB_HOST') ?: 'localhost';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASS') ?: '';
+$db   = getenv('DB_NAME') ?: 'sekolah_db';
+$port = getenv('DB_PORT') ?: 3306;
 
-// Membuat Koneksi
-$koneksi = mysqli_connect($host, $user, $pass, $db);
+$conn = mysqli_connect($host, $user, $pass, $db, (int)$port);
 
-// Cek Koneksi
-if (!$koneksi) {
+if (!$conn) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
-
-// Set Charset UTF-8
-mysqli_set_charset($koneksi, "utf8mb4");
 ?>
