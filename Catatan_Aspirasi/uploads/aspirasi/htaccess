@@ -1,0 +1,8 @@
+# Mencegah file apapun di folder ini dieksekusi sebagai script PHP,
+# supaya file yang di-upload (walau lolos validasi) tetap aman untuk disimpan.
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>
